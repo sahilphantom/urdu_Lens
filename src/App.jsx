@@ -8,6 +8,7 @@ import Home from "./pages/Home"
 import Footer from "./components/Footer"
 import About from "./pages/About"
 import ImageUploadDemo from "./components/ImageUploadDemo"
+import StaticNavbar from "./components/StaticNavbar"
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
       </div>
         {/* Ambient background with moving particles */}
           <div className="relative z-0">
+          <StaticNavbar />
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
