@@ -11,7 +11,7 @@ const ImageUploadDemo = () => {
     }
 
   return (
-<div className="w-full max-w-4xl my-12 mx-auto min-h-96 border-[1px] border-dashed   text-gray-300  rounded-lg">
+<div className="w-full max-w-4xl my-12 m-auto min-h-96 border-[1px] border-dashed  text-gray-300 rounded-lg overflow-hidden max-sm:w-[95%] mx-auto ">
       <ImageUpload onChange={handleFileUpload} />
     </div>
   );

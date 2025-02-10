@@ -5,7 +5,7 @@ import { Bot } from "lucide-react";
 const Footer = () => {
   return (
     <footer className=" mt-5 text-white py-12 border-t border-white/10">
-      <div className="container w-[90%] m-auto mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="container w-[86%] mx-auto grid justify-between grid-cols-1 md:grid-cols-4 gap-8">
         <div>
         <a href="/" className="flex items-center pb-3 space-x-2">
         <Bot className="w-8 h-8 text-purple-500" />
@@ -22,8 +22,8 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <a href="#pricing" className="text-gray-400 hover:text-white">
-                Pricing
+              <a href="#About" className="text-gray-400 hover:text-white">
+                About
               </a>
             </li>
             <li>

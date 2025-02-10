@@ -39,7 +39,7 @@ const Fsection = () => {
       Upload your Urdu images and let our advanced OCR technology convert them into editable, searchable text in seconds.
       </p>
     </div>
-    <div className="mx-auto  grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">
+    <div className="mx-auto  grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2 max-sm:mx-4">
       {features.map((feature) => (
         <div key={feature.name} className="relative bg-black/[0.96] overflow-hidden rounded-lg border border-white/10 p-11">
           <div className="flex items-center gap-4">
