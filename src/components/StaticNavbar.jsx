@@ -10,7 +10,7 @@ import { Bot, Menu } from "lucide-react"
     }
   return (
     <nav className=" backdrop-blur-sm border-b border-white/10">
-                  <div className=" flex w-[90%] m-auto  items-center justify-between px-6 py-4 backdrop-blur-sm ">
+                  <div className=" flex w-[93%] m-auto  items-center justify-between px-6 py-4 backdrop-blur-sm ">
 
       <Link to="/" className="flex items-center space-x-2">
         <Bot className="w-8 h-8 text-purple-500" />
@@ -18,9 +18,9 @@ import { Bot, Menu } from "lucide-react"
       </Link>
 
       <div className="hidden md:flex items-center space-x-8">
-        <NavLink to="/features">Features</NavLink>
-        <NavLink to="/how-it-works">How It Works</NavLink>
-        <NavLink to="/about">About</NavLink>
+      <NavLink to="/">Home</NavLink>
+            <NavLink to="/features">Features</NavLink>
+            <NavLink to="/about">About</NavLink>
         {/* <NavLink to="/contact">Contact</NavLink> */}
       </div>
 
