@@ -9,7 +9,7 @@ export default function CTA() {
         Ready to revolutionize Urdu  text<br /> digitization?
         </h2>
         <p className="max-w-[42rem] text-gray-400  text-muted-foreground max-sm:px-4  sm:text-xl  sm:leading-8">
-        Join leading organizations who trust UrduVision to transform their Urdu documents into searchable,
+        Join leading organizations who trust <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">UrduLens </span>to transform their Urdu documents into searchable,
         editable text. Stay ahead in the digital preservation of Urdu literature and content.
         </p>
         <Button size="lg" className="mt-8">

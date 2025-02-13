@@ -9,7 +9,7 @@ const Footer = () => {
         <div>
         <a href="/" className="flex items-center pb-3 space-x-2">
         <Bot className="w-8 h-8 text-purple-500" />
-        <span className="text-white font-medium text-xl">UrduVision</span>
+        <span className="text-white font-medium text-xl">UrduLens</span>
       </a>
           <p className="text-gray-400">Streamlining your workflow, one task at a time.</p>
         </div>

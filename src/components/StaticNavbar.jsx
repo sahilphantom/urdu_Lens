@@ -22,7 +22,7 @@ import MobileMenu from "./MobileMenu"
 
           <Link to="/" className="flex items-center space-x-2">
             <Bot className="w-8 h-8 text-purple-500" />
-            <span className="text-white font-medium text-xl">UrduVision</span>
+            <span className="text-white font-medium text-xl">UrduLens</span>
           </Link>
   
           <div className="hidden md:flex items-center space-x-8">

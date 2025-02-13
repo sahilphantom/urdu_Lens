@@ -47,7 +47,7 @@ const Navbar = () => {
             <div className=" w-[93%]  m-auto flex items-center justify-between px-6 py-4 ">
             <Link to="/" className="flex items-center space-x-2">
               <Bot className="w-8 h-8 text-purple-500" />
-              <span className="text-white font-medium text-xl">UrduVision</span>
+              <span className="text-white font-medium text-xl">UrduLens</span>
             </Link>
 
             <div className="hidden md:flex items-center space-x-8">
