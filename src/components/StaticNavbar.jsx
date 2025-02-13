@@ -1,41 +1,51 @@
 import { Link, useNavigate } from "react-router-dom"
-import React from "react"
+import React, { useState } from "react"
 import  Button  from "../ui/Button"
 import { Bot, Menu } from "lucide-react"
+import MobileMenu from "./MobileMenu"
 
  const StaticNavbar = () => {
     const navigate = useNavigate()
     const handleGetStarted = () => {
         navigate('/upload')
     }
-  return (
-    <nav className=" backdrop-blur-sm border-b border-white/10">
-                  <div className=" flex w-[93%] m-auto  items-center justify-between px-6 py-4 backdrop-blur-sm ">
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
-      <Link to="/" className="flex items-center space-x-2">
-        <Bot className="w-8 h-8 text-purple-500" />
-        <span className="text-white font-medium text-xl">UrduVision</span>
-      </Link>
+    const toggleMobileMenu = () => {
+      setIsMobileMenuOpen(!isMobileMenuOpen)
+    }
+  
+    return (
+      <>
+        <nav className="flex items-center justify-between px-6 py-4 backdrop-blur-sm border-b border-white/10">
+        <div className=" w-[93%] m-auto  flex items-center justify-between  backdrop-blur-sm ">
 
-      <div className="hidden md:flex items-center space-x-8">
-      <NavLink to="/">Home</NavLink>
+          <Link to="/" className="flex items-center space-x-2">
+            <Bot className="w-8 h-8 text-purple-500" />
+            <span className="text-white font-medium text-xl">UrduVision</span>
+          </Link>
+  
+          <div className="hidden md:flex items-center space-x-8">
+          <NavLink to="/">Home</NavLink>
             <NavLink to="/features">Features</NavLink>
             <NavLink to="/about">About</NavLink>
-        {/* <NavLink to="/contact">Contact</NavLink> */}
-      </div>
-
-      <div className="hidden md:flex items-center space-x-4">
-        
-        <Button onClick={handleGetStarted} className="bg-purple-600 hover:bg-purple-700 text-white">Get Started</Button>
-      </div>
-
-      <Button variant="ghost" size="icon" className="md:hidden text-white">
-        <Menu className="w-6 h-6" />
-      </Button>
-      </div>
-    </nav>
-  )
-}
+            <NavLink to="/contact">Contact</NavLink>
+          </div>
+  
+          <div className="hidden md:flex items-center space-x-4">
+            
+            <Button onClick={handleGetStarted} className="bg-purple-600 hover:bg-purple-700 text-white">Get Started</Button>
+          </div>
+  
+          <Button variant="ghost" size="icon" className="md:hidden text-white" onClick={toggleMobileMenu}>
+            <Menu className="w-6 h-6" />
+          </Button>
+          </div>
+        </nav>
+        <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
+      </>
+    )
+  }
 
 function NavLink({ to, children }) {
   return (
