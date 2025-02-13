@@ -42,7 +42,7 @@ const HowItWorks = () => {
       <div className="py-20 border-t border-white/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-6 md:text-5xl">How Does It Works.</h2>
+            <h2 className="text-3xl font-bold text-white mb-6 md:text-5xl">How Does It Works?</h2>
             <p className="text-gray-400 text-lg max-w-[58rem] mx-auto mb-[5rem]">
               First, upload the image file to our OCR Converter. Then the OCR Converter will instantly scan the image
               file. After the scanning process is done, you will get your extracted text from your image file.

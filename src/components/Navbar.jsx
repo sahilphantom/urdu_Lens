@@ -51,7 +51,6 @@ const Navbar = () => {
             </Link>
 
             <div className="hidden md:flex items-center space-x-8">
-            <NavLink to="/">Home</NavLink>
               <NavLink to="/features">Features</NavLink>
               <NavLink to="/about">About</NavLink>
               <NavLink to="/contact">Contact</NavLink>
@@ -62,9 +61,9 @@ const Navbar = () => {
               <Button onClick={handleGetStarted} className="bg-purple-600 hover:bg-purple-700 text-white">Get Started</Button>
             </div>
 
-            <Button  size="icon" className="md:hidden text-white" onClick={toggleMobileMenu}>
+            <button  size="icon" className="md:hidden text-white" onClick={toggleMobileMenu}>
               <Menu className="w-6 h-6" />
-            </Button>
+            </button>
             </div>
           </motion.nav>
         )}
