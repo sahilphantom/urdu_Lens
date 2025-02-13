@@ -3,12 +3,12 @@ import Navbar from "./components/Navbar"
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom"
 
 import Features from "./pages/Features"
-import HowItWork from "./pages/HowItWork"
 import Home from "./pages/Home"
 import Footer from "./components/Footer"
 import About from "./pages/About"
 import ImageUploadDemo from "./components/ImageUploadDemo"
 import StaticNavbar from "./components/StaticNavbar"
+import Contact from "./pages/Contact"
 
 const App = () => {
   return (
@@ -27,10 +27,9 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/features" element={<Features />} />
-            <Route path="/how-it-works" element={<HowItWork />} />
             <Route path="/about" element={<About />} />
             <Route path="/upload" element={<ImageUploadDemo />} />
-            {/* <Route path="/contact" element={<Contact />} /> */}
+            <Route path="/contact" element={<Contact />} />
           </Routes>
           <Footer />
         </div>

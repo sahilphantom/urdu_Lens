@@ -34,7 +34,7 @@ const Fsection = () => {
   return (
     <section className="container justify-center md:w-[95%] mx-auto  text-white space-y-16 py-20 md:py-22">
     <div className="mx-auto max-w-[58rem] text-center">
-      <h2 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-5xl">Features</h2>
+      <h2 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-5xl">Features.</h2>
       <p className="mt-4 text-gray-400 text-muted-foreground sm:text-lg">
       Upload your Urdu images and let our advanced OCR technology convert them into editable, searchable text in seconds.
       </p>
