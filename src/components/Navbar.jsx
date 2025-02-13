@@ -42,9 +42,9 @@ const Navbar = () => {
               stiffness: 260,
               damping: 20,
             }}
-            className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between  backdrop-blur-sm bg-black/80 border-b border-white/10"
+            className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between  backdrop-blur-sm bg-black/80 border-b border-white/10"
           >
-            <div className=" w-[93%] m-auto flex items-center justify-between px-6 py-4 ">
+            <div className=" w-[93%]  m-auto flex items-center justify-between px-6 py-4 ">
             <Link to="/" className="flex items-center space-x-2">
               <Bot className="w-8 h-8 text-purple-500" />
               <span className="text-white font-medium text-xl">UrduVision</span>

@@ -51,8 +51,8 @@ const HowItWorks = () => {
   
           <div className="flex flex-wrap justify-center gap-10 ">
             {steps.map((step, index) => (
-              <div key={index} className="flex flex-col items-center bg-black/[0.96] text-lg p-6 rounded-lg border border-white/10 text-center max-w-[250px]">
-                <div className="bg-transparent rounded-full p-6 mb-14 border-b border-white/10 text-white/90">{step.icon}</div>
+              <div key={index} className="flex flex-col items-center text-lg p-6 rounded-lg border border-white/10 text-center max-w-[250px]">
+                <div className="bg-transparent rounded-full p-6 mb-14 border-b border-white/10 text-white/10">{step.icon}</div>
                 <p className="text-gray-400">{step.title}</p>
               </div>
             ))}

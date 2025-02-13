@@ -70,7 +70,7 @@ export const ImageUpload = ({ onChange }) => {
             Upload Image
           </p>
           <p className="relative z-20 font-sans font-normal text-gray-300  text-base mt-2">
-            Drag or drop your files here or click to upload
+            Drag and drop your files here or click to upload
           </p>
           <div className="relative w-full mt-10 max-w-xl mx-auto">
             {files.length > 0 &&
@@ -79,7 +79,7 @@ export const ImageUpload = ({ onChange }) => {
                   key={"file" + idx}
                   layoutId={idx === 0 ? "file-upload" : "file-upload-" + idx}
                   className={cn(
-                    "relative overflow-hidden z-40 bg-neutral-900 border border-white/10  flex flex-col items-start justify-start md:h-24 p-4 mt-4 w-full mx-auto rounded-md",
+                    "relative overflow-hidden z-40 bg-white/10  flex flex-col items-start justify-start md:h-24 p-4 mt-4 w-full mx-auto rounded-md",
                     "shadow-sm",
                   )}
                 >
@@ -128,7 +128,7 @@ export const ImageUpload = ({ onChange }) => {
                   damping: 20,
                 }}
                 className={cn(
-                  "relative group-hover/file:shadow-2xl z-40 bg-neutral-800 flex items-center justify-center h-32 mt-4 w-full max-w-[8rem] mx-auto rounded-md",
+                  "relative group-hover/file:shadow-2xl z-40 bg-white/10 flex items-center justify-center h-32 mt-4 w-full max-w-[8rem] mx-auto rounded-md",
                   "shadow-[0px_10px_50px_rgba(0,0,0,0.1)]",
                 )}
               >
