@@ -59,7 +59,7 @@ const ContactSection = () => {
         >
           <label className="text-lg text-gray-100 max-sm:text-base">Email</label>
           <div className="flex items-center justify-between gap-2 max-sm:flex-col max-sm:items-start max-sm:gap-4">
-            <p className="text-3xl text-gray-400 max-sm:text-xl">info@urduLens.com</p>
+            <p className="text-3xl text-gray-400 max-sm:text-xl">info@urdulens.com</p>
             <Bot className="w-14 h-14 text-purple-600 text-3xl max-sm:w-10 max-sm:h-10" />
           </div>
         </motion.div>
