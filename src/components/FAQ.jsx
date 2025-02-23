@@ -57,10 +57,10 @@ const FAQ = () => {
             >
               <span className="text-base font-normal text-white sm:text-xl">{item.question}</span>
               <span
-                className={`ml-6 flex h-7 w-7 items-center justify-center rounded-full border border-white/10 ${openIndex === index ? "bg-transparent" : ""}`}
+                className={`ml-6 flex h-7 w-7 items-center justify-center rounded-full border border-white/80 ${openIndex === index ? "bg-transparent" : ""}`}
               >
                 <svg
-                  className={`h-6 w-6 transform text-white/10 transition-transform ${openIndex === index ? "rotate-45" : ""}`}
+                  className={`h-6 w-6 transform text-white/80 transition-transform ${openIndex === index ? "rotate-45" : ""}`}
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
