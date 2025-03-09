@@ -1,9 +1,12 @@
-import { useRef, useState } from "react"
-import React from "react"
-import { motion } from "framer-motion"
-import { IconUpload } from "@tabler/icons-react"
-import { useDropzone } from "react-dropzone"
-import { cn } from "../utils/cn"
+import { useRef, useState } from "react";
+import React from "react";
+import { motion } from "framer-motion";
+import { IconUpload } from "@tabler/icons-react";
+import { useDropzone } from "react-dropzone";
+import { cn } from "../utils/cn";
+import axios from "axios";
+
+const API_URL = "http://127.0.0.1:8000/predict";  // Local FastAPI server
 
 const mainVariant = {
   initial: {
@@ -15,7 +18,7 @@ const mainVariant = {
     y: -20,
     opacity: 0.9,
   },
-}
+};
 
 const secondaryVariant = {
   initial: {
@@ -24,36 +27,61 @@ const secondaryVariant = {
   animate: {
     opacity: 1,
   },
-}
+};
 
 export const ImageUpload = ({ onChange }) => {
-  const [files, setFiles] = useState([])
-  const fileInputRef = useRef(null)
+  const [files, setFiles] = useState([]);
+  const [recognizedText, setRecognizedText] = useState("");  // For recognized text
+  const [processedImage, setProcessedImage] = useState(null);  // For processed image
+  const [loading, setLoading] = useState(false);  // For loading indicator
+  const fileInputRef = useRef(null);
+
+  // Function to call the API
+  const handleProcessImage = async () => {
+    if (files.length > 0) {
+      const file = files[0];
+      const formData = new FormData();
+      formData.append("file", file);
+
+      try {
+        setLoading(true);  // Show loading indicator
+        const response = await axios.post(API_URL, formData);
+        setRecognizedText(response.data.text);
+        setProcessedImage("data:image/jpeg;base64," + response.data.image);
+      } catch (error) {
+        console.error("Error uploading image:", error);
+      } finally {
+        setLoading(false);  // Hide loading indicator
+      }
+    } else {
+      alert("Please upload an image first!");
+    }
+  };
 
   const handleFileChange = (newFiles) => {
-    setFiles((prevFiles) => [...prevFiles, ...newFiles])
-    onChange && onChange(newFiles)
-  }
+    setFiles(newFiles);
+    setRecognizedText("");  // Clear previous results
+    setProcessedImage(null);  // Clear previous image
+    onChange && onChange(newFiles);
+  };
 
   const handleClick = () => {
-    fileInputRef.current?.click()
-  }
+    fileInputRef.current?.click();
+  };
 
   const { getRootProps, isDragActive } = useDropzone({
     multiple: false,
     noClick: true,
     onDrop: handleFileChange,
     onDropRejected: (error) => {
-      console.log(error)
+      console.log(error);
     },
-  })
+  });
 
   return (
-    <div className="w-full " {...getRootProps()}>
+    <div className="w-full flex flex-col items-center" {...getRootProps()}>
       <motion.div
-        onClick={handleClick}
-        whileHover="animate"
-        className="p-10 group/file block rounded-lg cursor-pointer w-full relative overflow-hidden"
+        className="p-10 group/file block rounded-lg w-full relative overflow-hidden"
       >
         <input
           ref={fileInputRef}
@@ -62,124 +90,81 @@ export const ImageUpload = ({ onChange }) => {
           onChange={(e) => handleFileChange(Array.from(e.target.files || []))}
           className="hidden"
         />
-        <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,white,transparent)]">
-          {/* <GridPattern /> */}
-        </div>
-        <div className="flex flex-col items-center justify-center">
-          <p className="relative z-20 font-sans text-2xl font-bold text-white ">
+
+        <div className="flex gap-4 mb-4">  {/* Container for buttons with gap */}
+          <button
+            onClick={handleClick}
+            className="bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition"
+          >
             Upload Image
-          </p>
-          <p className="relative z-20 font-sans font-normal text-gray-300  text-base mt-2">
-            Drag and drop your files here or click to upload
-          </p>
-          <div className="relative w-full mt-10 max-w-xl mx-auto">
-            {files.length > 0 &&
-              files.map((file, idx) => (
-                <motion.div
-                  key={"file" + idx}
-                  layoutId={idx === 0 ? "file-upload" : "file-upload-" + idx}
-                  className={cn(
-                    "relative overflow-hidden z-40 bg-white/10  flex flex-col items-start justify-start md:h-24 p-4 mt-4 w-full mx-auto rounded-md",
-                    "shadow-sm",
-                  )}
-                >
-                  <div className="flex justify-between w-full items-center gap-4">
-                    <motion.p
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      layout
-                      className="text-base text-gray-300 truncate max-w-xs"
-                    >
-                      {file.name}
-                    </motion.p>
-                    <motion.p
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      layout
-                      className="rounded-lg px-2 py-1 w-fit flex-shrink-0 text-sm text-gray-300 bg-purple-600 shadow-input"
-                    >
-                      {(file.size / (1024 * 1024)).toFixed(2)} MB
-                    </motion.p>
-                  </div>
+          </button>
 
-                  <div className="flex text-sm md:flex-row flex-col items-start md:items-center w-full mt-2 justify-between text-gray-300 ">
-                    <motion.p
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      layout
-                      className="px-1 py-0.5 rounded-md bg-purple-600 "
-                    >
-                      {file.type}
-                    </motion.p>
+          <button
+            onClick={handleProcessImage}
+            className={`py-2 px-4 rounded-md transition ${
+              files.length > 0 ? "bg-purple-600 hover:bg-purple-700 text-white" : "bg-gray-500 text-gray-300 cursor-not-allowed"
+            }`}
+            disabled={loading || files.length === 0}
+          >
+            {loading ? "Processing..." : "Process Image"}
+          </button>
+        </div>
 
-                    <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} layout>
-                      modified {new Date(file.lastModified).toLocaleDateString()}
-                    </motion.p>
-                  </div>
-                </motion.div>
-              ))}
-            {!files.length && (
+        {loading && <p className="text-gray-300 mt-4">Processing...</p>}  {/* Loading indicator */}
+
+        <div className="relative w-full mt-10 max-w-xl mx-auto">
+          {files.length > 0 &&
+            files.map((file, idx) => (
               <motion.div
-                layoutId="file-upload"
-                variants={mainVariant}
-                transition={{
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 20,
-                }}
+                key={"file" + idx}
+                layoutId={idx === 0 ? "file-upload" : "file-upload-" + idx}
                 className={cn(
-                  "relative group-hover/file:shadow-2xl z-40 bg-white/10 flex items-center justify-center h-32 mt-4 w-full max-w-[8rem] mx-auto rounded-md",
-                  "shadow-[0px_10px_50px_rgba(0,0,0,0.1)]",
+                  "relative overflow-hidden z-40 bg-white/10 flex flex-col items-start justify-start md:h-24 p-4 mt-4 w-full mx-auto rounded-md",
+                  "shadow-sm"
                 )}
               >
-                {isDragActive ? (
+                <div className="flex justify-between w-full items-center gap-4">
                   <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="text-neutral-600 flex flex-col items-center"
+                    layout
+                    className="text-base text-gray-300 truncate max-w-xs"
                   >
-                    Drop it
-                    <IconUpload className="h-4 w-4 text-neutral-400" />
+                    {file.name}
                   </motion.p>
-                ) : (
-                  <IconUpload className="h-4 w-4 text-neutral-300" />
-                )}
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    layout
+                    className="rounded-lg px-2 py-1 w-fit flex-shrink-0 text-sm text-gray-300 bg-purple-600 shadow-input"
+                  >
+                    {(file.size / (1024 * 1024)).toFixed(2)} MB
+                  </motion.p>
+                </div>
               </motion.div>
-            )}
+            ))}
 
-            {!files.length && (
-              <motion.div
-                variants={secondaryVariant}
-                className="absolute opacity-0 border border-dashed border-purple-600 inset-0 z-30 bg-transparent flex items-center justify-center h-32 mt-4 w-full max-w-[8rem] mx-auto rounded-md"
-              ></motion.div>
-            )}
-          </div>
+          {/* Display Recognized Text */}
+          {recognizedText && (
+            <div className="mt-6 text-white">
+              <h3 className="text-lg font-bold">Recognized Text:</h3>
+              <pre className="bg-gray-800 p-4 rounded-md whitespace-pre-wrap">{recognizedText}</pre>
+            </div>
+          )}
+
+          {/* Display Processed Image */}
+          {processedImage && (
+            <div className="mt-6">
+              <h3 className="text-lg font-bold text-white">Processed Image:</h3>
+              <img
+                src={processedImage}
+                alt="Processed"
+                className="rounded-md mt-2 border border-gray-700"
+              />
+            </div>
+          )}
         </div>
       </motion.div>
     </div>
-  )
-}
-
-// function GridPattern() {
-//   const columns = 41
-//   const rows = 11
-//   return (
-//     <div className="flex bg-neutral-900 flex-shrink-0 flex-wrap justify-center items-center gap-x-px gap-y-px  scale-105">
-//       {Array.from({ length: rows }).map((_, row) =>
-//         Array.from({ length: columns }).map((_, col) => {
-//           const index = row * columns + col
-//           return (
-//             <div
-//               key={`${col}-${row}`}
-//               className={`w-10 h-10 flex flex-shrink-0 rounded-[2px] ${
-//                 index % 2 === 0
-//                   ? "bg-neutral-950 shadow-[0px_0px_1px_3px_rgba(255,255,255,1)_inset] dark:shadow-[0px_0px_1px_3px_rgba(0,0,0,1)_inset]"
-//                   : "bg-neutral-950 shadow-[0px_0px_1px_3px_rgba(255,255,255,1)_inset] dark:shadow-[0px_0px_1px_3px_rgba(0,0,0,1)_inset]"
-//               }`}
-//             />
-//           )
-//         }),
-//       )}
-//     </div>
-//   )
-// }
+  );
+};
