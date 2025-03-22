@@ -110,7 +110,16 @@ export const ImageUpload = ({ onChange }) => {
           </button>
         </div>
 
-        {loading && <p className="text-gray-300 mt-4">Processing...</p>}  {/* Loading indicator */}
+        {loading && (
+  <div className="w-full bg-gray-700 rounded-full h-2 mt-4 relative overflow-hidden">
+    <motion.div
+      className="h-2 bg-purple-500"
+      initial={{ width: "0%" }}
+      animate={{ width: "100%" }}
+      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+    />
+  </div>
+)}
 
         <div className="relative w-full mt-10 max-w-xl mx-auto">
           {files.length > 0 &&
@@ -145,12 +154,41 @@ export const ImageUpload = ({ onChange }) => {
             ))}
 
           {/* Display Recognized Text */}
-          {recognizedText && (
-            <div className="mt-6 text-white">
-              <h3 className="text-lg font-bold">Recognized Text:</h3>
-              <pre className="bg-gray-800 p-4 rounded-md whitespace-pre-wrap">{recognizedText}</pre>
-            </div>
-          )}
+{recognizedText && (
+  <div className="mt-6 text-white">
+    <h3 className="text-lg font-bold">Recognized Text:</h3>
+    <pre className="bg-gray-800 p-4 rounded-md whitespace-pre-wrap">{recognizedText}</pre>
+
+    {/* Buttons for Copy and Download */}
+    <div className="flex gap-4 mt-4">
+      <button
+        onClick={() => {
+          navigator.clipboard.writeText(recognizedText);
+          alert("Text copied to clipboard!");
+        }}
+        className="bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition"
+      >
+        Copy Text
+      </button>
+
+      <button
+        onClick={() => {
+          const blob = new Blob([recognizedText], { type: "text/plain" });
+          const link = document.createElement("a");
+          link.href = URL.createObjectURL(blob);
+          link.download = "extracted_text.txt";
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }}
+        className="bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition"
+      >
+        Download Text
+      </button>
+    </div>
+  </div>
+)}
+
 
           {/* Display Processed Image */}
           {processedImage && (
