@@ -9,6 +9,7 @@ import About from "./pages/About"
 import ImageUploadDemo from "./components/ImageUploadDemo"
 import StaticNavbar from "./components/StaticNavbar"
 import Contact from "./pages/Contact"
+import ViewTutorial from "./components/ViewTutorial"
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
             <Route path="/features" element={<Features />} />
             <Route path="/about" element={<About />} />
             <Route path="/upload" element={<ImageUploadDemo />} />
+            <Route path="/tutorial" element={<ViewTutorial />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
           <Footer />

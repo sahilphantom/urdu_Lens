@@ -13,6 +13,9 @@ const navigate = useNavigate();
   const handleUploadClick = () => {
     navigate('/upload')
   }
+  const handleTutorial = () => {
+    navigate('/tutorial')
+  }
 
  
 
@@ -70,12 +73,12 @@ const navigate = useNavigate();
             </div>    
           </Button>
 
-          {/* <Button size="lg" variant="outline" className="text-white border-purple-500 hover:bg-purple-500/20">
+          <Button size="lg" variant="outline" onClick={handleTutorial} className="text-white border-purple-500 hover:bg-purple-500/20">
           <div className="flex flex-row">
             <Sparkles className="mr-2 h-5 w-5" />
             <span>View Tutorial</span>
             </div>
-          </Button> */}
+          </Button>
         </motion.div>
       </div>
     </div>
