@@ -72,7 +72,7 @@ function ViewTutorial() {
               {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
             </button>
 
-            <div className="text-white text-sm ml-auto">UrduLens Demo</div>
+            <div className="text-gray-400 text-lg ml-auto">UrduLens Demo</div>
           </div>
         </div>
       </div>
