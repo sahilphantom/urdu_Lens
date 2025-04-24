@@ -1,5 +1,6 @@
 
 import { useState, useRef } from "react"
+import tutorialVideo from "../assets/video.mp4" 
 
 // Import icons from lucide-react
 import { Play, Pause, Volume2, VolumeX } from "lucide-react"
@@ -50,7 +51,7 @@ function ViewTutorial() {
             onEnded={() => setIsPlaying(false)}
           >
             {/* Replace with your actual video source */}
-            <source src="/your-tutorial-video.mp4" type="video/mp4" />
+            <source src={tutorialVideo} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
 
