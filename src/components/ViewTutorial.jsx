@@ -42,17 +42,17 @@ function ViewTutorial() {
         <div className="absolute inset-0 bg-gradient-to-r from-purple-900/30 via-purple-600/20 to-purple-900/30 rounded-2xl blur-xl -m-4"></div>
 
         {/* Video container */}
-        <div className="relative rounded-2xl overflow-hidden border border-gray-700 shadow-2xl bg-black">
-          <video
-            ref={videoRef}
-            className="w-full h-auto"
-            poster="https://via.placeholder.com/1000x600"
-            onEnded={() => setIsPlaying(false)}
-          >
-            {/* Replace with your actual video source */}
-            <source src='/video.mp4' type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+      <div className="relative rounded-2xl overflow-hidden border border-gray-700 shadow-2xl bg-black aspect-video">
+  <iframe
+    src="https://streamable.com/e/tmhmzc"
+    frameBorder="0"
+    allow="autoplay; fullscreen"
+    allowFullScreen
+    className="w-full h-full"
+    title="UrduLens Tutorial"
+  ></iframe>
+
+
 
           {/* Custom video controls */}
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 flex items-center">
